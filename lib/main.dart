@@ -1,6 +1,7 @@
-import 'package:expense_app/test.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import './transaction.dart';
+import './colors.dart';
 
 void main() {
   runApp(MyApp());
@@ -12,7 +13,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Expense App',
       theme: ThemeData(
-          primarySwatch: generateMaterialColor(Pallete.primary),
+          // primarySwatch: generateMaterialColor(Pallete.primary),
           scaffoldBackgroundColor: generateMaterialColor(Pallete.third)),
       home: MyHomePage(),
     );
@@ -24,6 +25,7 @@ class Pallete {
   static const Color secondary = Color(0xFFF8F0DF);
   static const Color third = Color(0xFFFEFBF3);
   static const Color fourth = Color(0xFF79B4B7);
+  static const Color fifth = Color(0xFF4C4C6D);
 }
 
 class MyHomePage extends StatelessWidget {
@@ -45,11 +47,13 @@ class MyHomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        resizeToAvoidBottomInset: false,
         appBar: AppBar(
+          backgroundColor: generateMaterialColor(Pallete.primary),
           title: Text("Expense App"),
         ),
         body: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            // mainAxisAlignment: MainAxisAlignment.spaceAround,
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: <Widget>[
               Card(
@@ -58,13 +62,49 @@ class MyHomePage extends StatelessWidget {
                   margin: EdgeInsets.all(0),
                   width: double.infinity,
                   height: 200,
-                  child: Text(
-                    "Chart",
-                    textAlign: TextAlign.center,
+                  child: Center(
+                    child: Text("This is Charts",
+                        style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            fontSize: 42,
+                            color: generateMaterialColor(
+                              Pallete.secondary,
+                            ))),
                   ),
                 ),
                 elevation: 5,
               ),
+              Card(
+                  elevation: 5,
+                  margin: EdgeInsets.fromLTRB(10, 20, 10, 20),
+                  shadowColor: generateMaterialColor(Pallete.secondary),
+                  child: Container(
+                    padding: EdgeInsets.all(10),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.end,
+                      children: <Widget>[
+                        TextField(
+                            decoration: InputDecoration(
+                                labelText: "Title", labelStyle: TextStyle())),
+                        TextField(
+                          decoration: InputDecoration(
+                            labelText: "Amount",
+                          ),
+                        ),
+                        TextButton(
+                            onPressed: () {
+                              print("Button Pressed!");
+                            },
+                            child: Text("Add Transaction"),
+                            style: TextButton.styleFrom(
+                                primary: Colors.white,
+                                backgroundColor:
+                                    generateMaterialColor(Pallete.fourth),
+                                onSurface:
+                                    generateMaterialColor(Pallete.primary)))
+                      ],
+                    ),
+                  )),
               Column(
                   children: transactions.map((tx) {
                 return Card(
@@ -99,7 +139,7 @@ class MyHomePage extends StatelessWidget {
                           ),
                         ),
                         Text(
-                          tx.date.toString(),
+                          DateFormat("d MMM y").format(tx.date),
                           style: TextStyle(
                               color: generateMaterialColor(Pallete.primary)),
                         )
