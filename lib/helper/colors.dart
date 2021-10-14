@@ -34,6 +34,13 @@ Color shadeColor(Color color, double factor) => Color.fromRGBO(
     shadeValue(color.blue, factor),
     1);
 
+class Pallete {
+  static const Color primary = Color(0xFF9D9D9D);
+  static const Color secondary = Color(0xFFF8F0DF);
+  static const Color third = Color(0xFFFEFBF3);
+  static const Color fourth = Color(0xFF79B4B7);
+  static const Color fifth = Color(0xFF4C4C6D);
+}
 
 // import 'package:flutter/material.dart';
 
