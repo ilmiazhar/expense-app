@@ -2,8 +2,11 @@ import 'package:flutter/material.dart';
 import '../helper/colors.dart';
 
 class NewTransaction extends StatelessWidget {
+  final Function addTransaction;
   final titleController = TextEditingController();
   final amountController = TextEditingController();
+
+  NewTransaction(this.addTransaction);
 
   @override
   Widget build(BuildContext context) {
@@ -21,23 +24,20 @@ class NewTransaction extends StatelessWidget {
                 labelText: "Title",
                 labelStyle: TextStyle(),
               ),
-              // onChanged: (val) {
-              //   titleInput = val.trim();
-              // },
               controller: titleController,
             ),
             TextField(
               decoration: InputDecoration(
                 labelText: "Amount",
               ),
-              // onChanged: (val) => amountInput = val,
               controller: amountController,
             ),
             TextButton(
                 onPressed: () {
-                  // print(titleInput);
-                  // print(amountInput);
-                  print(titleController.text);
+                  addTransaction(
+                    titleController.text,
+                    double.parse(amountController.text),
+                  );
                 },
                 child: Text("Add Transaction"),
                 style: TextButton.styleFrom(

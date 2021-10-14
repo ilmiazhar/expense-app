@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'widgets/transaction_list.dart';
-import 'widgets/new_transaction.dart';
 import 'helper/colors.dart';
+import 'widgets/user_transactions.dart';
 
 void main() {
   runApp(MyApp());
@@ -34,31 +33,34 @@ class MyHomePage extends StatelessWidget {
         backgroundColor: generateMaterialColor(Pallete.primary),
         title: Text("Expense App"),
       ),
-      body: Column(
-        // mainAxisAlignment: MainAxisAlignment.spaceAround,
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: <Widget>[
-          Card(
-            color: generateMaterialColor(Pallete.fourth),
-            child: Container(
-              margin: EdgeInsets.all(0),
-              width: double.infinity,
-              height: 200,
-              child: Center(
-                child: Text("This is Charts",
+      body: SingleChildScrollView(
+        child: Column(
+          // mainAxisAlignment: MainAxisAlignment.spaceAround,
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: <Widget>[
+            Card(
+              color: generateMaterialColor(Pallete.fourth),
+              child: Container(
+                margin: EdgeInsets.all(0),
+                width: double.infinity,
+                height: 200,
+                child: Center(
+                  child: Text(
+                    "This is Charts",
                     style: TextStyle(
                         fontWeight: FontWeight.bold,
                         fontSize: 42,
                         color: generateMaterialColor(
                           Pallete.secondary,
-                        ))),
+                        )),
+                  ),
+                ),
               ),
+              elevation: 5,
             ),
-            elevation: 5,
-          ),
-          NewTransaction(),
-          TransactionList()
-        ],
+            UserTransactions(),
+          ],
+        ),
       ),
     ); // This trailing comma makes auto-formatting nicer for build methods.
   }

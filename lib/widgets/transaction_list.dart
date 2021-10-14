@@ -3,33 +3,15 @@ import 'package:flutter/material.dart';
 import '../models/transaction.dart';
 import '../helper/colors.dart';
 
-class TransactionList extends StatefulWidget {
-  TransactionList({Key? key}) : super(key: key);
+class TransactionList extends StatelessWidget {
+  final List<Transaction> transactions;
 
-  @override
-  _TransactionListState createState() => _TransactionListState();
-}
-
-class _TransactionListState extends State<TransactionList> {
-  final List<Transaction> _userTransaction = [
-    Transaction(
-      id: '1',
-      title: 'Internet Billing',
-      amount: 25,
-      date: DateTime.now(),
-    ),
-    Transaction(
-      id: '2',
-      title: 'Cat foods',
-      amount: 15,
-      date: DateTime.now(),
-    ),
-  ];
+  TransactionList(this.transactions);
 
   @override
   Widget build(BuildContext context) {
     return Column(
-        children: _userTransaction.map((tx) {
+        children: transactions.map((tx) {
       return Card(
           child: Row(
         children: <Widget>[
